@@ -1,9 +1,11 @@
 FROM propentatech/portfolios-formation-dev-web2026:latest
 
-RUN mkdir /usr/share/nginx/html/portfolio-laji28/
+RUN mkdir -p /usr/share/nginx/html/portfolio-laji28/
 RUN rm -rf /usr/share/nginx/html/portfolio-laji28/*
 
 COPY . /usr/share/nginx/html/portfolio-laji28/
+
+RUN sed -i 's|root   /usr/share/nginx/html;|root   /usr/share/nginx/html/portfolio-laji28;|g' /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
